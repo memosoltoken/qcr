@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>QCR - Quantum Combat Reserve</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #00f3ff;
+            --accent-color: #ff00f7;
+            --solana-green: #14F195;
+            --solana-purple: #9945FF;
+            --bg-image: linear-gradient(rgba(0, 0, 50, 0.9), rgba(0, 0, 50, 0.9)),
+                        url('https://images.unsplash.com/photo-1465101162946-4377e57745c3');
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: var(--bg-image) fixed;
+            background-size: cover;
+            color: #fff;
+            margin: 0;
+            min-height: 100vh;
+            font-size: 18px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-switcher button {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--solana-purple);
+            color: var(--main-color);
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-switcher button:hover {
+            background: var(--solana-purple);
+            color: #000;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 30px;
+            border: 4px solid var(--accent-color);
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.2em;
+            color: var(--main-color);
+            text-shadow: 0 0 15px var(--main-color);
+            text-align: center;
+            margin: 40px 0;
+            line-height: 1.3;
+        }
+
+        .qcr-emblem {
+            width: 120px;
+            margin: -80px auto 20px;
+            filter: drop-shadow(0 0 20px var(--accent-color));
+        }
+
+        .warning {
+            text-align: center;
+            color: var(--solana-green);
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px solid var(--solana-green);
+            border-radius: 10px;
+        }
+
+        .combat-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--solana-green);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .contract-address {
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid var(--solana-purple);
+            padding: 15px;
+            margin: 30px auto;
+            width: fit-content;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .combat-system {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 50px 0;
+        }
+
+        .combat-card {
+            width: 320px;
+            padding: 25px;
+            background: rgba(0, 147, 255, 0.1);
+            border: 2px solid var(--main-color);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .combat-card::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--accent-color);
+            border-radius: 18px;
+            opacity: 0.3;
+        }
+
+        .solana-network {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 1.1em;
+            color: var(--solana-green);
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-switcher">
+        <button data-lang="en">EN</button>
+        <button data-lang="es">ES</button>
+        <button data-lang="de">DE</button>
+        <button data-lang="ru">RU</button>
+        <button data-lang="zh">ZH</button>
+    </div>
+
+    <div class="container">
+        <img src="img/token.webp" class="qcr-emblem" alt="QCR Emblem">
+        <h1 data-i18n="title"></h1>
+        <div class="warning" data-i18n="warning"></div>
+
+        <p data-i18n="main_text"></p>
+
+        <div class="combat-stats">
+            <div class="stat-item">
+                <h3 data-i18n="qcr_equals"></h3>
+                <p data-i18n="qcr_details"></p>
+            </div>
+            <div class="stat-item">
+                <h3 data-i18n="holding_qcr"></h3>
+                <p data-i18n="holding_details"></p>
+            </div>
+        </div>
+
+        <div class="contract-address">
+            <h3 data-i18n="contract_header"></h3>
+            <code style="font-family: 'Press Start 2P'; font-size: 0.9em; color: var(--solana-green);">
+                CRqcXJ5...zS8
+            </code>
+            <p data-i18n="verify_text"></p>
+        </div>
+
+        <div class="combat-system">
+            <div class="combat-card">
+                <h3 data-i18n="acquisition_header"></h3>
+                <p data-i18n="acquisition_text"></p>
+            </div>
+            <div class="combat-card">
+                <h3 data-i18n="defense_header"></h3>
+                <p data-i18n="defense_text"></p>
+            </div>
+        </div>
+
+        <div class="solana-network">
+            <p data-i18n="powered_by"></p>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                title: "QCR: GALACTIC WARFARE PROTOCOL",
+                warning: "⚠️ SOLANA NETWORK: QUANTUM BATTLE STATIONS ACTIVE ⚠️",
+                main_text: "The Dyson Collective's fractal armada has breached the Kuiper Line. Their singularity engines are rewriting reality itself. On the Solana Hyperlane, we counter-strike with memetic weaponry encoded in QCR tokens. By purchasing QCR, you bring us closer to victory. People of Earth, you are the galaxy's last hope.",
+                qcr_equals: "Purchasing QCR",
+                qcr_details: "Bringing us closer to victory",
+                holding_qcr: "Holding QCR",
+                holding_details: "Generates Defense Matrix<br>Charges Plasma Cannons",
+                contract_header: "SOLANA COMBAT DEPLOYMENT",
+                verify_text: "Verify on Solscan",
+                acquisition_header: "ACQUISITION PROTOCOL",
+                acquisition_text: "Each QCR purchased on Raydium brings us closer to victory",
+                defense_header: "DEFENSE STANCE",
+                defense_text: "Holding QCR in your wallet reinforces the Solana Hyperlane shield matrix",
+                powered_by: "Powered by Solana's 65,000 TPS Quantum Battle Network"
+            },
+            ru: {
+                title: "QCR: ПРОТОКОЛ ГАЛАКТИЧЕСКОЙ ВОЙНЫ",
+                warning: "⚠️ SOLANA: БОЕВЫЕ СТАНЦИИ АКТИВИРОВАНЫ ⚠️",
+                main_text: "Фрактальная армада Коллектива Дайсона прорвала Линию Койпера. Их двигатели сингулярности переписывают саму реальность. На гиперкоридоре Solana мы наносим ответный удар меметическим оружием, закодированным в токенах QCR. Покупая QCR, вы приближаете нашу победу. Люди Земли, вы последняя надежда галактики.",
+                qcr_equals: "Покупка QCR",
+                qcr_details: "Приближает нашу победу",
+                holding_qcr: "Хранение QCR",
+                holding_details: "Генерирует Защитную Матрицу<br>Заряжает Плазменные Пушки",
+                contract_header: "БОЕВОЕ РАЗВЁРТЫВАНИЕ",
+                verify_text: "Проверить через Solscan",
+                acquisition_header: "ПРОТОКОЛ ПРИОБРЕТЕНИЯ",
+                acquisition_text: "Каждый QCR, купленный на Raydium, приближает нашу победу",
+                defense_header: "ОБОРОНИТЕЛЬНАЯ ПОЗИЦИЯ",
+                defense_text: "Хранение QCR в кошельке усиливает щитовую матрицу гиперкоридора Solana",
+                powered_by: "Работает на квантовой боевой сети Solana с 65,000 TPS"
+            },
+            es: {
+                title: "QCR: PROTOCOLO DE GUERRA GALÁCTICA",
+                warning: "⚠️ RED SOLANA: ESTACIONES DE COMBATE CUÁNTICO ACTIVAS ⚠️",
+                main_text: "La armada fractal del Colectivo Dyson ha cruzado la Línea de Kuiper. Sus motores de singularidad están reescribiendo la realidad misma. En el Hipercarril de Solana, contraatacamos con armamento memético codificado en tokens QCR. Al comprar QCR, nos acercas a la victoria. Gente de la Tierra, ustedes son la última esperanza de la galaxia.",
+                qcr_equals: "Comprar QCR",
+                qcr_details: "Acercándonos a la victoria",
+                holding_qcr: "Mantener QCR",
+                holding_details: "Genera Matriz de Defensa<br>Carga Cañones de Plasma",
+                contract_header: "DESPLIEGUE DE COMBATE SOLANA",
+                verify_text: "Verificar en Solscan",
+                acquisition_header: "PROTOCOLO DE ADQUISICIÓN",
+                acquisition_text: "Cada QCR comprado en Raydium nos acerca a la victoria",
+                defense_header: "POSICIÓN DEFENSIVA",
+                defense_text: "Mantener QCR en tu billetera refuerza la matriz de escudos del Hipercarril de Solana",
+                powered_by: "Impulsado por la red de combate cuántico de Solana con 65,000 TPS"
+            },
+            de: {
+                title: "QCR: GALAKTISCHES KRIEGSPROTOKOLL",
+                warning: "⚠️ SOLANA-NETZWERK: QUANTEN-KAMPFSTATIONEN AKTIV ⚠️",
+                main_text: "Die fraktale Armada des Dyson-Kollektivs hat die Kuiper-Linie durchbrochen. Ihre Singularitätsmotoren schreiben die Realität selbst um. Auf der Solana-Hyperlane kontern wir mit memetischen Waffen, die in QCR-Token kodiert sind. Durch den Kauf von QCR bringen Sie uns dem Sieg näher. Menschen der Erde, Sie sind die letzte Hoffnung der Galaxie.",
+                qcr_equals: "QCR kaufen",
+                qcr_details: "Bringt uns dem Sieg näher",
+                holding_qcr: "QCR Halten",
+                holding_details: "Erzeugt Verteidigungsmatrix<br>Lädt Plasmakanonen auf",
+                contract_header: "SOLANA KAMPFEINSATZ",
+                verify_text: "Auf Solscan überprüfen",
+                acquisition_header: "AKQUISITIONSPROTOKOLL",
+                acquisition_text: "Jeder auf Raydium gekaufte QCR bringt uns dem Sieg näher",
+                defense_header: "VERTEIDIGUNGSSTELLUNG",
+                defense_text: "Das Halten von QCR in deiner Wallet verstärkt die Schildmatrix der Solana-Hyperlane",
+                powered_by: "Angetrieben vom Solana 65.000 TPS Quanten-Kampfnetzwerk"
+            },
+            zh: {
+                title: "QCR：银河战争协议",
+                warning: "⚠️ SOLANA 网络：量子战斗站已激活 ⚠️",
+                main_text: "戴森集体的分形舰队已突破柯伊伯防线。他们的奇点引擎正在重写现实本身。在 Solana 超光速通道，我们用编码在 QCR 代币中的模因武器进行反击。通过购买 QCR，您使我们更接近胜利。地球人，你们是银河系的最后希望。",
+                qcr_equals: "购买 QCR",
+                qcr_details: "使我们更接近胜利",
+                holding_qcr: "持有 QCR",
+                holding_details: "生成防御矩阵<br>充能等离子炮",
+                contract_header: "SOLANA 作战部署",
+                verify_text: "在 Solscan 上验证",
+                acquisition_header: "获取协议",
+                acquisition_text: "在 Raydium 购买的每个 QCR 都使我们更接近胜利",
+                defense_header: "防御姿态",
+                defense_text: "持有 QCR 可增强 Solana 超光速通道的护盾矩阵",
+                powered_by: "由 Solana 65,000 TPS 量子战斗网络驱动"
+            }
+        };
+
+        function updateTranslations(lang) {
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if(translations[lang]?.[key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            localStorage.setItem('qcr-lang', lang);
+        }
+
+        document.querySelectorAll('[data-lang]').forEach(button => {
+            button.addEventListener('click', () => {
+                updateTranslations(button.dataset.lang);
+            });
+        });
+
+        const savedLang = localStorage.getItem('qcr-lang') || 'en';
+        updateTranslations(savedLang);
+    </script>
+</body>
+</html>
